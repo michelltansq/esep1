@@ -85,37 +85,6 @@ public class DBHelper extends SQLiteOpenHelper {
         return result;
     }
 
-    public int updateLocation(Location data){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(COLUMN_LATITUDE, data.getLatitude());
-        values.put(COLUMN_LONGITUDE, data.getLongitude());
-        values.put(COLUMN_LOC_NAME, data.getLoc_name());
-        String condition = COLUMN_ID + "= ?";
-        String[] args = {String.valueOf(data.getId())};
-        int result = db.update(TABLE_LOCATION, values, condition, args);
-        db.close();
-        return result;
-    }
-
-//    public ArrayList<String> getLocation() {
-//        ArrayList<String> locations = new ArrayList<String>();
-//        String selectQuery = "SELECT " + COLUMN_ID + "," + COLUMN_LATITUDE + "," + COLUMN_LONGITUDE + "," + COLUMN_LOC_NAME + " FROM " + TABLE_LOCATION;
-//
-//        SQLiteDatabase db = this.getReadableDatabase();
-//        Cursor cursor = db.rawQuery(selectQuery, null);
-//
-//        if (cursor.moveToFirst()) {
-//            do {
-//                locations.add(cursor.getString(0));
-//            } while (cursor.moveToNext());
-//        }
-//        cursor.close();
-//        db.close();
-//
-//        return locations;
-//    }
-
     public ArrayList<Location> getLocations() {
         ArrayList<Location> locations = new ArrayList<Location>();
         String selectQuery = "SELECT " + COLUMN_ID + "," + COLUMN_LATITUDE + "," + COLUMN_LONGITUDE + "," + COLUMN_LOC_NAME + " FROM " + TABLE_LOCATION;
