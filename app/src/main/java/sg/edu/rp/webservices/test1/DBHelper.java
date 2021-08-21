@@ -85,19 +85,6 @@ public class DBHelper extends SQLiteOpenHelper {
         return result;
     }
 
-    public int updateLocation(Location data){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(COLUMN_LATITUDE, data.getLatitude());
-        values.put(COLUMN_LONGITUDE, data.getLongitude());
-        values.put(COLUMN_LOC_NAME, data.getLoc_name());
-        String condition = COLUMN_ID + "= ?";
-        String[] args = {String.valueOf(data.getId())};
-        int result = db.update(TABLE_LOCATION, values, condition, args);
-        db.close();
-        return result;
-    }
-
     public ArrayList<Location> getLocations() {
         ArrayList<Location> locations = new ArrayList<Location>();
         String selectQuery = "SELECT " + COLUMN_ID + "," + COLUMN_LATITUDE + "," + COLUMN_LONGITUDE + "," + COLUMN_LOC_NAME + " FROM " + TABLE_LOCATION;
